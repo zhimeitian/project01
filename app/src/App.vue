@@ -1,20 +1,15 @@
 <template>
   <div>
-      <el-button>你好</el-button>
-      <h1>{{create()}}</h1>
+    <!-- 组件挂载点 -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import {registerApi} from './api/channel'
+
 
 export default {
-  methods:{
-    async create(){
-  const res = await registerApi()
-  console.log(res)
-}
-  }
+
 }
 </script>
 
