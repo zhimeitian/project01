@@ -29,11 +29,62 @@
   <el-container>
     <!-- 左边侧边栏区域 -->
       <el-aside width="200px">
+        <!-- 侧边栏用户信息展示区 -->
         <div class="user-box">
           <img :src="user_pic" alt="" v-if="user_pic" />
           <img src="../../assets/images/head.png" alt=""/>
           <span>欢迎 {{nickname||username }}</span>
-        </div></el-aside>
+        </div>
+        <!-- 侧边栏的导航区 -->
+        <el-menu
+      default-active="/home"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose"
+      background-color="#23262E"
+      text-color="#fff"
+      active-text-color="#409EFF"
+        unique-opened
+        >
+      <!--
+        里面有嵌套用el-submenu
+        没有嵌套用el-menu-item
+       -->
+        <el-menu-item index='/home'>
+          <i class="el-icon-s-home"></i>
+          <span>首页</span>
+        </el-menu-item>
+      <el-submenu index="/topic">
+        <template slot="title">
+          <i class="el-icon-s-order"></i>
+          <span>文章管理</span>
+        </template>
+      <el-menu-item index="/topic1">
+        <i class="el-icon-s-home"></i>
+        <span >文章一</span>
+      </el-menu-item>
+      <el-menu-item index="/topic2">
+        <i class="el-icon-document-copy"></i>
+        <span >文章二</span>
+      </el-menu-item>
+      </el-submenu>
+     <!-- 个人中心 -->
+        <el-submenu index="/my">
+        <template slot="title">
+          <i class="el-icon-user-solid"></i>
+          <span>个人中心</span>
+        </template>
+      <el-menu-item index="/my1">
+        <i class="el-icon-s-home"></i>
+        <span >文章一</span>
+      </el-menu-item>
+      <el-menu-item index="/my2">
+        <i class="el-icon-document"></i>
+        <span >文章二</span>
+      </el-menu-item>
+      </el-submenu>
+    </el-menu>
+        </el-aside>
     <el-container>
         <!-- 页面主体位置 -->
       <el-main>Main</el-main>
@@ -69,7 +120,13 @@ methods:{
         }).catch(() => {
             
         });
-  }
+  },
+   handleOpen(key, keyPath) {
+     console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
 }
 }
 </script>
