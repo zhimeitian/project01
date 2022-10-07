@@ -9,7 +9,7 @@ import store from '../store/index'
 const routes = [
 //   后台管理首页
 {
-    path:'/index',
+    path:'/home',
     component:Layout
 },
 {

@@ -33,9 +33,9 @@ export const getUserApi  = function(){
         //  默认是get
          method:'get',
         //  传参给后台：params（查询字符串？和&） data（请求体body） headers（请求头）
-        headers:{
-            Authorization:store.state.token
-        }
+        // headers:{
+        //     Authorization:store.state.token
+        // }
      })
  }
 
@@ -46,8 +46,8 @@ export const getMenusApi  = function(){
         //  默认是get
          method:'get',
         //  传参给后台：params（查询字符串？和&） data（请求体body） headers（请求头）
-        headers:{
-            Authorization:store.state.token
-        }
+        // headers:{
+        //     Authorization:store.state.token
+        // }
      })
  }
