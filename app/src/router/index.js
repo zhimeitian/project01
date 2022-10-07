@@ -6,6 +6,11 @@ import Register from '../pages/Register'
 //引入所用组件
 export default new VueRouter({
     routes:[
+        // 一进去就是登录页面
+    {
+        path:'/',
+        redirect:'/login'
+    },
     {
     path:'/reg',
     component:Register

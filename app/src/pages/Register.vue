@@ -20,7 +20,7 @@
   </el-form-item>
   <el-form-item >
     <el-button class="btn-reg" type="primary" @click="registerFn">注册</el-button>
-    <el-link type="info" disabled>进行登录</el-link>
+    <el-link type="info" @click="goLogin">进行登录</el-link>
   </el-form-item>
 </el-form>
         </div>
@@ -94,6 +94,10 @@ methods:{
             return false //阻止默认提交行为
           }
         })
+    },
+    goLogin(){
+                 // 路由跳转到登录页面
+      this.$router.push('/login')
     }
 }
 }
