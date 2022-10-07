@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
 Vue.use(Vuex)
 
 const state ={
@@ -13,5 +14,6 @@ const mutations = {
 }
 export default new Vuex.Store({
     mutations:mutations,
-    state:state
+    state:state,
+    plugins:[createPersistedState()] //注入持久化插件，在本地持久化保存token
 })
