@@ -78,6 +78,7 @@ export default {
                 this.$message.success(res.message)
                 // console.log(res.token)
                 this.Updatetoken(res.token)
+                this.$router.push('/index')
           }else{
             return false //阻止默认提交行为
           }
