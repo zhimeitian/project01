@@ -7,12 +7,9 @@
 </template>
 
 <script>
-import {getUserApi} from './api/channel'
 
 export default {
- created(){
-  this.$store.dispatch('getUserInfo')
- }
+// 
 }
 </script>
 
