@@ -32,7 +32,7 @@
         <!-- 侧边栏用户信息展示区 -->
         <div class="user-box">
           <img :src="user_pic" alt="" v-if="user_pic" />
-          <img src="../../assets/images/head.png" alt=""/>
+          <img src="../../assets/images/head.png" alt="" v-else/>
           <span>欢迎 {{nickname||username }}</span>
         </div>
         <!-- 侧边栏的导航区 -->
@@ -50,39 +50,25 @@
         里面有嵌套用el-submenu
         没有嵌套用el-menu-item
        -->
-        <el-menu-item index='/home'>
-          <i class="el-icon-s-home"></i>
-          <span>首页</span>
+ <template v-for="item in menus">
+       <el-menu-item v-if="!item.children" :index='item.indexPath' :key="item.indexPath">
+          <i class="item.icon"></i>
+          <span>{{item.title}}</span>
         </el-menu-item>
-      <el-submenu index="/topic">
+      <el-submenu v-else :index="item.indexPath" :key="item.indexPath">
         <template slot="title">
-          <i class="el-icon-s-order"></i>
-          <span>文章管理</span>
+          <i :class="item.icon"></i>
+          <span>{{item.title}}</span>
         </template>
-      <el-menu-item index="/topic1">
-        <i class="el-icon-s-home"></i>
-        <span >文章一</span>
+      <el-menu-item v-for="(obj,index) in item.children" :index="obj.indexPath" :key="index">
+        <i :class="obj.icon"></i>
+        <span >{{obj.title}}</span>
       </el-menu-item>
-      <el-menu-item index="/topic2">
-        <i class="el-icon-document-copy"></i>
-        <span >文章二</span>
-      </el-menu-item>
+ 
       </el-submenu>
-     <!-- 个人中心 -->
-        <el-submenu index="/my">
-        <template slot="title">
-          <i class="el-icon-user-solid"></i>
-          <span>个人中心</span>
-        </template>
-      <el-menu-item index="/my1">
-        <i class="el-icon-s-home"></i>
-        <span >文章一</span>
-      </el-menu-item>
-      <el-menu-item index="/my2">
-        <i class="el-icon-document"></i>
-        <span >文章二</span>
-      </el-menu-item>
-      </el-submenu>
+
+
+ </template>
     </el-menu>
         </el-aside>
     <el-container>
@@ -98,8 +84,14 @@
 
 <script>
 import {mapGetters} from 'vuex'
+import {getMenusApi} from '../../api/channel'
 export default {
 name:'Layout',
+data(){
+  return {
+menus:[] //保存侧边栏数据
+  }
+},
 computed:{
   ...mapGetters(['nickname','username','user_pic'])
 },
@@ -126,7 +118,15 @@ methods:{
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
+      },
+      async getMenusFn(){
+        const res = await getMenusApi()
+        this.menus = res.data.data
       }
+},
+created(){
+  // 组件创建就发送请求
+ this.getMenusFn()
 }
 }
 </script>

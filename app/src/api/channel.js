@@ -38,3 +38,16 @@ export const getUserApi  = function(){
         }
      })
  }
+
+//  请求获得左侧栏的数据
+export const getMenusApi  = function(){
+    return request({
+         url:'/my/menus',
+        //  默认是get
+         method:'get',
+        //  传参给后台：params（查询字符串？和&） data（请求体body） headers（请求头）
+        headers:{
+            Authorization:store.state.token
+        }
+     })
+ }
