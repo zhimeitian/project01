@@ -24,7 +24,15 @@ const actions ={
     context.commit('UpdateUserInfo',res.data.data)
  }
 }
+
+const getters={
+   nickname:state=>state.userInfo.nickname, //昵称
+   username:state=>state.userInfo.username,  //用户名
+   user_pic:state=>state.userInfo.user_pic  // 用户头像
+}
+
 export default new Vuex.Store({
+   getters:getters,
     actions:actions,
     mutations:mutations,
     state:state,

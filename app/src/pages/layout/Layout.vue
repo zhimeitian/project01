@@ -28,7 +28,12 @@
   </el-header>
   <el-container>
     <!-- 左边侧边栏区域 -->
-    <el-aside width="200px">aside</el-aside>
+      <el-aside width="200px">
+        <div class="user-box">
+          <img :src="user_pic" alt="" v-if="user_pic" />
+          <img src="../../assets/images/head.png" alt=""/>
+          <span>欢迎 {{nickname||username }}</span>
+        </div></el-aside>
     <el-container>
         <!-- 页面主体位置 -->
       <el-main>Main</el-main>
@@ -41,8 +46,12 @@
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
 export default {
 name:'Layout',
+computed:{
+  ...mapGetters(['nickname','username','user_pic'])
+},
 methods:{
   logoutFn(){
     // 组件标签里绑定的都是自定义事件，都需要组件内$emit来触发才行
