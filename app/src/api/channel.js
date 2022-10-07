@@ -1,5 +1,5 @@
 import request from '../utils/request'
-
+import store from '../store/index'
 // 接口请求方法
 // 对象的解构赋值
 // 注册接口的请求
@@ -23,5 +23,18 @@ export const loginApi  = function({username,password}){
              username:username,
              password:password,
          }
+     })
+ }
+
+//  获取用户信息请求
+export const getUserApi  = function(){
+    return request({
+         url:'/my/userinfo',
+        //  默认是get
+         method:'get',
+        //  传参给后台：params（查询字符串？和&） data（请求体body） headers（请求头）
+        headers:{
+            Authorization:store.state.token
+        }
      })
  }
