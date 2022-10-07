@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import {mapMutations} from 'vuex'
 import {loginApi} from '../api/channel'
 export default {
     name:"Login",
@@ -60,6 +61,7 @@ export default {
     },
     methods:{
       //路由跳转到注册页面
+      ...mapMutations(['Updatetoken']),
       goReg(){
         this.$router.push('/reg')
       },
@@ -74,11 +76,13 @@ export default {
             // console.log(res)
                 if(res.code !== 0) return this.$message.error(res.message)
                 this.$message.success(res.message)
+                // console.log(res.token)
+                this.Updatetoken(res.token)
           }else{
             return false //阻止默认提交行为
           }
         })
-      }
+      },
     }
 
 }
