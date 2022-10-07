@@ -12,7 +12,7 @@ const mutations = {
  Updatetoken(state,val){
     state.token = val
  },
-//  保存用户信息
+//  保存用户信息，userinfo不为空
  UpdateUserInfo(state,val){
         state.userInfo = val
  }

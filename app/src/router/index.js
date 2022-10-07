@@ -25,9 +25,17 @@ const router = new VueRouter({
     routes:routes
 })
 
-// router.beforeEach((to,from,next)=>{
-//   store.dispatch('getUserInfo')
-// })
+router.beforeEach((to,from,next)=>{
+    const token = store.state.token
+ 
+    // 有token的时候请求获得用户信息
+    if(token && !store.state.userInfo.username){
+        console.log('调用了')
+        store.dispatch('getUserInfo')
+        // console.log(token)
+    }
+  next()
+})
 
 export default router
 // 退出登录和重新登录，只走相关组件的代码（不会导致所有的代码重新执行，app.vue不走也就不会再次执行app.vue的代码）

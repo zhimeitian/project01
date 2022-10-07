@@ -54,6 +54,8 @@ methods:{
         }).then(() => {
           // 情况token
           this.$store.commit('Updatetoken','')
+          // 清除用户信息
+          this.$store.commit('UpdateUserInfo',{})
           this.$router.push('/login')
         }).catch(() => {
             
