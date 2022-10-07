@@ -1,14 +1,15 @@
 import request from '../utils/request'
 
 // 接口请求方法
-export const registerApi  = function(){
+// 对象的解构赋值
+export const registerApi  = function({username,password,repassword}){
    return request({
         url:'/api/reg',
         method:'post',
         data:{
-            username:'l',
-            password:'111111',
-            repassword:'111111'
+            username:username,
+            password:password,
+            repassword:repassword
         }
     })
 }
