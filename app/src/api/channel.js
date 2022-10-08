@@ -105,3 +105,12 @@ export const updatePwdApi  = function({old_pwd,new_pwd,re_pwd}){
         }
      })
  }
+
+//  获取文章分类
+export const getArtcateApi  = function(){
+    return request({
+         url:'/my/cate/list',
+        //  默认是get
+         method:'get',
+     })
+ }
