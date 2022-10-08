@@ -6,6 +6,7 @@ import Layout from '../pages/layout/Layout'
 import store from '../store/index'
 import Home from '../pages/home/Home'
 import Userinfo from '../pages/user/Userinfo'
+import Avator from '../pages/user/Avator'
 
 //引入所用组件
 const routes = [
@@ -24,6 +25,11 @@ const routes = [
         {
             path:'user-info',
             component:Userinfo
+        },
+        // 
+        {
+            path:'user-avatar',
+            component:Avator
         }
     ]
 },
