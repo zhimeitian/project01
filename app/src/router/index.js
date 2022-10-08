@@ -36,7 +36,7 @@ router.beforeEach((to,from,next)=>{
  if(token){   // 有token的时候
     // 有token没有用户信息我就发送请求获得用户信息
     if(!store.state.userInfo.username){
-        console.log('调用了')
+        // console.log('调用了')
         store.dispatch('getUserInfo')
         // console.log(token)
     }
@@ -47,7 +47,7 @@ router.beforeEach((to,from,next)=>{
         // 放行（路由前置守卫不会再次触发，而是匹配路由表，让组件挂载）
         next()
     }else{
-        // 
+        // 强制切换路径会再次触发路由守卫
         next('/login')
     }
    

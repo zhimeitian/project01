@@ -2,6 +2,8 @@
 // 基于axios网络请求
 import axios  from "axios";
 import store from '../store/index'
+import router  from "../router/index";
+import { Message } from "element-ui";
 
 // 二次封装axios，建立一个新的axios
 const myAxios = axios.create({
@@ -32,4 +34,22 @@ myAxios.interceptors.request.use(function (config) {
  *  reject(error)
  * })
  */
+
+// 响应拦截器
+myAxios.interceptors.response.use(function (response) { // 当状态码为2xx/3xx开头的进这里，形参的response是成功的结果
+  // 对响应数据做点什么
+  return response
+}, function (error) { // 响应状态码4xx/5xx进这里是触发失败的回调，形参的error是失败的结果
+  // console.dir(error)
+  if(error.response.status === 401){
+    //token过期了，要清除掉vuex里的一切然后切换到登录页面
+    console.log('执行了响应')
+    store.commit('Updatetoken','')
+    store.commit('UpdateUserInfo',{})
+    router.push('/login')
+    Message.error('用户身份已经过期了')
+  }
+  return Promise.reject(error)
+})
+
 export default myAxios
