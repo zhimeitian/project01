@@ -5,6 +5,7 @@ import Register from '../pages/Register'
 import Layout from '../pages/layout/Layout'
 import store from '../store/index'
 import Home from '../pages/home/Home'
+import Userinfo from '../pages/user/Userinfo'
 
 //引入所用组件
 const routes = [
@@ -18,7 +19,12 @@ const routes = [
        { 
         path:'home',
         component:Home
-    }
+        },
+        // 用户信息区
+        {
+            path:'user-info',
+            component:Userinfo
+        }
     ]
 },
 {
