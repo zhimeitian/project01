@@ -1,5 +1,4 @@
 <template>
-  <div>
     <!-- 登录页面的整体盒子 -->
     <div class="login-container">
       <!-- 登录的盒子 -->
@@ -10,20 +9,20 @@
   <el-form ref="loginRef" :model="loginForm" :rules="loginRules">
     <!-- 用户名 -->
   <el-form-item prop="username">
-    <el-input placeholder="输入用户名" v-model="loginForm.username" ></el-input>
+    <el-input placeholder="输入用户名" v-model="loginForm.username" style="width:340px"></el-input>
   </el-form-item>
   <!-- 密码 -->
   <el-form-item prop="password">
-    <el-input type="password" placeholder="输入密码" v-model="loginForm.password" ></el-input>
+    <el-input type="password" placeholder="输入密码" v-model="loginForm.password" style="width:340px"></el-input>
   </el-form-item>
   <el-form-item >
-    <el-button class="btn-login" type="primary" @click="loginFn">登录</el-button>
+    <el-button class="btn-login" type="primary" @click="loginFn"  style="width:340px">登录</el-button>
+    <br/>
     <el-link type="info" @click="goReg">进行注册</el-link>
   </el-form-item>
 </el-form>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -111,7 +110,7 @@ width: 100%;
     margin-top: -167px;
     box-sizing: border-box;
     box-shadow: 3px;
-    padding: 0 30px;
+    padding: 0 30px ;
     /* opacity: 0.1; */
 }
 .title-box{

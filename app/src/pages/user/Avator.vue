@@ -64,6 +64,7 @@ export default {
       const {data:res} =await updateUseravatorApi(this.avatar)
       if(res.code!==0) return this.$message.console.error(res.message);
       this.$message.success("更换用户头像成功")
+      // 让vuex里更新用户信息
       this.$store.dispatch('getUserInfo')
     }
   }

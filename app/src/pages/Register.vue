@@ -10,16 +10,17 @@
 <el-form ref="form" :model="form" :rules="rulesObj">
   <!-- prop和v-model的绑定值对应，prop是校验规则里的属性，v-model是data里的属性 -->
   <el-form-item prop="username">
-    <el-input placeholder="输入用户名" v-model="form.username"></el-input>
+    <el-input placeholder="输入用户名" v-model="form.username" style="width:340px"></el-input>
   </el-form-item>
   <el-form-item prop="password">
-    <el-input type="password" placeholder="输入密码" v-model="form.password"></el-input>
+    <el-input type="password" placeholder="输入密码" v-model="form.password" style="width:340px"></el-input>
   </el-form-item>
   <el-form-item prop="repassword">
-    <el-input type="password" placeholder="确认密码" v-model="form.repassword"></el-input>
+    <el-input type="password" placeholder="确认密码" v-model="form.repassword" style="width:340px"></el-input>
   </el-form-item>
   <el-form-item >
-    <el-button class="btn-reg" type="primary" @click="registerFn">注册</el-button>
+    <el-button class="btn-reg" type="primary" @click="registerFn" style="width:340px">注册</el-button>
+    <br/>
     <el-link type="info" @click="goLogin">进行登录</el-link>
   </el-form-item>
 </el-form>

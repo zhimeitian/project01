@@ -87,3 +87,21 @@ export const updateUseravatorApi  = function(avatar){
         }
      })
  }
+
+ //  更新用户密码
+export const updatePwdApi  = function({old_pwd,new_pwd,re_pwd}){
+    return request({
+         url:'/my/updatepwd',
+        //  默认是get
+         method:'patch',
+        //  传参给后台：params（查询字符串？和&） data（请求体body） headers（请求头）
+        // headers:{
+        //     Authorization:store.state.token
+        // }
+        data:{
+            old_pwd,
+            new_pwd,
+            re_pwd
+        }
+     })
+ }
