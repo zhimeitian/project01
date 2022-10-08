@@ -83,7 +83,9 @@
         </el-aside>
         <el-container>
           <!-- 页面主体位置 -->
-          <el-main>Main</el-main>
+          <el-main>
+            <router-view></router-view>
+          </el-main>
           <!-- 页脚位置 -->
           <el-footer>© ED</el-footer>
         </el-container>

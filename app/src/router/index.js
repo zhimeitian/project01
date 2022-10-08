@@ -4,13 +4,22 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import Layout from '../pages/layout/Layout'
 import store from '../store/index'
+import Home from '../pages/home/Home'
 
 //引入所用组件
 const routes = [
 //   后台管理首页
 {
-    path:'/home',
-    component:Layout
+    path:'/',
+    component:Layout,
+    // 重定向到子路由路径上去
+    redirect:'/home', //路由重定向，先匹配到了'/'，然后再次匹配到了/home
+    children:[
+       { 
+        path:'home',
+        component:Home
+    }
+    ]
 },
 {
 path:'/reg',
