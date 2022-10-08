@@ -10,7 +10,7 @@
       ref="userFormRef"
       label-width="100px"
     >
-      <el-form-item label="登录名称" prop="username">
+      <el-form-item label="登录名称" >
         <el-input v-model="userForm.username" disabled></el-input>
       </el-form-item>
       <el-form-item label="用户昵称" prop="nickname">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import {updateUserinfoApi} from '../../api/channel'
 export default {
 name:'Userinfo',
  data () {
@@ -55,7 +56,23 @@ name:'Userinfo',
     }
  },
  methods:{
-    submitFn(){},
+    // 提交修改按钮
+    submitFn(){
+        this.$refs.userFormRef.validate(async vaild=>{
+            if(vaild){ //通过校验为true
+            // console.log(this.userForm.email)
+            // 要补齐缺少的属性
+            this.userForm.id = this.$store.state.userInfo.id
+            console.log(this.userForm)
+            const {data:res} = await updateUserinfoApi(this.userForm)
+            if(res.code !== 0) return this.$message.error('用户更新信息失败')
+            this.$message.success('用户信息更新成功')
+                // console.log(res.token)
+            }else{ //校验不通过
+             return this.$message.error('请检查是否正确修改')
+            }
+        })
+    },
     resetFn(){}
  }
 }

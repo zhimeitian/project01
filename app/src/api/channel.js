@@ -51,3 +51,23 @@ export const getMenusApi  = function(){
         // }
      })
  }
+
+// 更新用户的信息
+export const updateUserinfoApi  = function({id,username,nickname,email,user_pic}){
+    return request({
+         url:'/my/userinfo',
+        //  默认是get
+         method:'put',
+        //  传参给后台：params（查询字符串？和&） data（请求体body） headers（请求头）
+        // headers:{
+        //     Authorization:store.state.token
+        // }
+        data:{
+            id,
+            username,
+            nickname,
+            email,
+            user_pic
+        }
+     })
+ }
