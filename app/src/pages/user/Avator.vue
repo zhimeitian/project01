@@ -19,7 +19,7 @@
             @change="onFileChange"
           />
           <el-button type="primary" icon="el-icon-plus" @click="chooseImg">选择图片</el-button>
-          <el-button type="success" icon="el-icon-upload" :disabled="avatar === ''">上传头像</el-button>
+          <el-button type="success" icon="el-icon-upload" :disabled="avatar === ''" @click="uploadFn">上传头像</el-button>
         </div>
       </div>
     </el-card>
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import {updateUseravatorApi} from '../../api/channel'
 export default {
   name: "Avator",
   data() {
@@ -51,14 +52,19 @@ export default {
         // base64字符串
         const fr = new FileReader()
         fr.readAsDataURL(files[0])
-        onload加载完毕后会触发onload事件函数
+        // onload加载完毕后会触发onload事件函数
         fr.onload = (e) =>{  //e是事件对象
-            console.log(this)
-            console.log(e)
+
             this.avatar = e.target.result
         }
 
       }
+    },
+    async uploadFn(){
+      const {data:res} =await updateUseravatorApi(this.avatar)
+      if(res.code!==0) return this.$message.console.error(res.message);
+      this.$message.success("更换用户头像成功")
+      this.$store.dispatch('getUserInfo')
     }
   }
 };

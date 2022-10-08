@@ -71,3 +71,19 @@ export const updateUserinfoApi  = function({id,username,nickname,email,user_pic}
         }
      })
  }
+
+//  更新用户头像
+export const updateUseravatorApi  = function(avatar){
+    return request({
+         url:'/my/update/avatar',
+        //  默认是get
+         method:'patch',
+        //  传参给后台：params（查询字符串？和&） data（请求体body） headers（请求头）
+        // headers:{
+        //     Authorization:store.state.token
+        // }
+        data:{
+            avatar  //头像的base64字符串
+        }
+     })
+ }
