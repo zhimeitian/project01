@@ -67,13 +67,19 @@ name:'Userinfo',
             const {data:res} = await updateUserinfoApi(this.userForm)
             if(res.code !== 0) return this.$message.error('用户更新信息失败')
             this.$message.success('用户信息更新成功')
+            this.$store.dispatch('getUserInfo')
                 // console.log(res.token)
             }else{ //校验不通过
              return this.$message.error('请检查是否正确修改')
             }
         })
     },
-    resetFn(){}
+    //重置表单
+    resetFn(){
+        // this.userForm.nickname = '',
+        // this.userForm.email = ''
+        this.$refs.userFormRef.resetFields()
+    }
  }
 }
 </script>
