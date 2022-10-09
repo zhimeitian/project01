@@ -9,6 +9,7 @@ import Userinfo from '../pages/user/Userinfo'
 import Avator from '../pages/user/Avator'
 import Userpwd from '../pages/user/Userpwd'
 import Artcate from '../pages/article/Artcate'
+import Articlelist from '../pages/article/Articlelist'
 //引入所用组件
 const routes = [
     //   后台管理首页
@@ -42,6 +43,10 @@ const routes = [
                 path: 'art-cate',
                 component: Artcate
             },
+            {
+                path:'art-list',
+                component:Articlelist
+            }
         ]
     },
     {
