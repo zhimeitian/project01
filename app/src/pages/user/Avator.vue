@@ -46,7 +46,7 @@ export default {
         // 是图片的连接地址（http开头的或者文件的路径）
         // 是图片的base64字符串
       } else {
-        // 这是本地的临时存储地址，返回的是个临时地址，只存在js的内存里而不会发给后台
+        // 只能应用在前端这是本地的临时存储地址，返回的是个临时地址，只存在js的内存里而不会发给后台
         // this.avatar =  URL.createObjectURL(files[0])
 
         // base64字符串

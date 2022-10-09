@@ -5,10 +5,11 @@ import store from '../store/index'
 import router  from "../router/index";
 import { Message } from "element-ui";
 
+export const baseURL = 'http://big-event-vue-api-t.itheima.net'
 // 二次封装axios，建立一个新的axios
 const myAxios = axios.create({
     // 前缀的地址
-    baseURL:'http://big-event-vue-api-t.itheima.net'
+    baseURL:baseURL
 })
 
 // 定义请求拦截器

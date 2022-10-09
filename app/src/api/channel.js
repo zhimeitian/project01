@@ -147,3 +147,45 @@ export const addArtCateAPI = ({ cate_name, cate_alias }) => {
       }
     })
   }
+
+  // 上传文章
+  export const uploadArticleAPI = (fd) => {
+    return request({
+      url: '/my/article/add',
+      method: 'post',
+      data: fd //如果传的是个普通对象，axios会把它转成json字符串在请求体里给后台
+      // 参数要的是表单对象, 不能写普通对象, axios内部会判断, 如果是表单对象, 传递的请求体会设置Content-Type: form-data与后端对应
+    })
+  }
+  // 获取文章列表
+  export const getArticleListAPI = ({ pagenum, pagesize, cate_id, state }) => {
+    return request({
+      url: '/my/article/list',
+      params: {
+        pagenum,
+        pagesize,
+        cate_id,
+        state
+      }
+    })
+  }
+  // 在文章列表处获取文章详情信息
+  export const getArticleDetailAPI = (id) => {
+    return request({
+      url: '/my/article/info',
+      params: {
+        id
+      }
+    })
+  }
+
+  //删除文章列表
+  export const delArticleAPI = (id) => {
+    return request({
+      url: '/my/article/info',
+      method: 'DELETE',
+      params: {
+        id
+      }
+    })
+  }
