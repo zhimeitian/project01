@@ -12,6 +12,7 @@
           type="index"
           width="100"
         ></el-table-column>
+        <!-- prop指定对象的属性，也就是cateList里的指定属性 -->
         <el-table-column label="分类名称" prop="cate_name"></el-table-column>
         <el-table-column label="分类别名" prop="cate_alias"></el-table-column>
         <el-table-column label="操作">
@@ -24,6 +25,7 @@
     </el-card>
 
     <!-- 添加分类的对话框 -->
+    <!-- visible控制对话框是否显示 -->
     <el-dialog :title="isEdit ? '编辑文章分类' : '添加文章分类'" :visible.sync="addVisible" width="35%" @closed="onAddClosedFn">
       <!-- 添加的表单 -->
       <el-form
@@ -56,14 +58,14 @@
 </template>
 
 <script>
-import { getArtCateListAPI, addArtCateAPI, updateArtCateAPI, delArtCateAPI } from '../../api/channel'
+import { getArtcateApi, addArtCateAPI, updateArtCateAPI, delArtCateAPI } from '../../api/channel'
 export default {
 name:'Artcate',
 
 data () {
     return {
       cateList: [], // 文章的分类列表
-      addVisible: false, // 添加分类-对话框是否显示
+      addVisible: false, // 添加分类-控制增加文章对话框是否显示
       addForm: { // 添加表单的数据对象
         cate_name: '',
         cate_alias: ''
@@ -83,19 +85,19 @@ data () {
     }
   },
   created () {
-    // 获取文章分类
+    // 获取文章分类列表数据
     this.initCateListFn()
   },
   methods: {
-    // 添加分类->点击出对话框
+    // 添加分类->点击出现对话框
     addCateBtnFn () {
       this.addVisible = true // 让对话框出现
       this.editId = '' // 编辑的文章分类id设置无
       this.isEdit = false // 编辑的状态关闭
     },
-    // 获取文章分类
+    // 获取文章分类列表数据
     async initCateListFn () {
-      const res = await getArtCateListAPI()
+      const res = await getArtcateApi()
       this.cateList = res.data.data
     },
     // 对话框内-添加按钮-点击事件
@@ -118,7 +120,7 @@ data () {
             this.$message.success('添加分类成功！')
           }
 
-          // 重新请求列表数据
+          // 重新请求文章分类列表数据
           this.initCateListFn()
           // 关闭对话框
           this.addVisible = false
@@ -140,7 +142,7 @@ data () {
       this.editId = obj.id // 保存要编辑的文章分类ID
       this.isEdit = true // 设置编辑状态
       this.addVisible = true // 让对话框显示
-      // 设置数据回显
+      // 设置数据回显，等dom更新完毕后再去修改addForm的值，这样就可以解决先点击修改再点击新增文章清空对话框内容不成功的bug
       this.$nextTick(() => {
         // 先让对话框出现, 它绑定空值的对象, 才能resetFields清空用初始空值
         this.addForm.cate_name = obj.cate_name
@@ -160,5 +162,9 @@ data () {
 </script>
 
 <style>
-
+.header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 </style>

@@ -114,3 +114,36 @@ export const getArtcateApi  = function(){
          method:'get',
      })
  }
+//  添加文章分类
+export const addArtCateAPI = ({ cate_name, cate_alias }) => {
+    return request({
+      url: '/my/cate/add',
+      method: 'post',
+      data: {
+        cate_name, //文章分类名
+        cate_alias //文章分类别名
+      }
+    })
+  }
+  //更新文章分类列表信息
+  export const updateArtCateAPI = ({ id, cate_name, cate_alias }) => {
+    return request({
+      url: '/my/cate/info',
+      method: 'put',
+      data: {
+        id,
+        cate_name,
+        cate_alias
+      }
+    })
+  }
+  //删除文章分类列表信息：params查询字符串参数（?和&）
+  export const delArtCateAPI = (id) => {
+    return request({
+      url: '/my/cate/del',
+      method: 'delete',
+      params: {
+        id
+      }
+    })
+  }
