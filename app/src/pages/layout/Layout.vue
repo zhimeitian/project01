@@ -16,16 +16,20 @@
           <el-submenu index="1">
             <template slot="title">
               <!-- 头像 -->
-              <img src="../../assets/images/head.png" alt class="avatar" />
+              <!-- <img src="../../assets/images/head.png" alt class="avatar" /> -->
+            <img :src="user_pic" alt class="avatar" v-if="user_pic" />
+            <img src="../../assets/images/head.png" alt class="avatar" v-else />
               <span>个人中心</span>
             </template>
-            <el-menu-item index="1-1">
-              <i class="el-icon-s-operation"></i>基本信息
+            <el-menu-item index="1-1" @click="toUserinfo">
+              
+                <i class="el-icon-s-operation"></i>基本信息
+              
             </el-menu-item>
-            <el-menu-item index="1-2">
+            <el-menu-item index="1-2" @click="toAvator">
               <i class="el-icon-camera"></i>更换头像
             </el-menu-item>
-            <el-menu-item index="1-3">
+            <el-menu-item index="1-3" @click="toUserpwd">
               <i class="el-icon-key"></i>重置密码
             </el-menu-item>
           </el-submenu>
@@ -92,12 +96,11 @@
       </el-container>
     </el-container>
   </div>
- 
 </template>
 
 <script>
 import { mapGetters } from "vuex";
-import { getMenusApi } from "../../api/channel";
+import { getMenusApi } from "@/api/channel";
 export default {
   name: "Layout",
   data() {
@@ -135,6 +138,17 @@ export default {
     async getMenusFn() {
       const res = await getMenusApi();
       this.menus = res.data.data;
+    },
+    //跳转到基本信息页
+    toUserinfo() {
+      this.$router.push('/user-info')
+    },
+    //跳转到更换头像页
+    toAvator(){
+        this.$router.push('/user-avatar')
+    },
+    toUserpwd(){
+      this.$router.push('/user-pwd')
     }
   },
   created() {

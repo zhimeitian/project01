@@ -48,64 +48,98 @@
 
 <script>
 import * as echarts from 'echarts';
-
+import axios  from "axios";
+import {aListAllApi} from '@/api/channel';
 export default {
+  data(){
+    return{
+      list:['dada'],
+      aListAll:[ 23]
+    }
+  },
 name:'Home',
+created(){
+
+},
 mounted () {
+   this.getaListAll()
     // 面积图
     this.setCurveChartFn()
     // 饼状图
     this.picChartFn()
     // 柱状图
     this.columnChartFn()
+    // this.getListAll()
+
   },
 methods: {
-    // 设置面积图
+ 
+   async getaListAll(){
+    // console.log(this.aListAll[0])
+    const {data:res} =  await aListAllApi()
+    this.aListAll = res
+    console.log(this.aListAll)
+  },
+    // // 设置面积图
+    // getListAll() {
+    //   var that = this;
+    //   axios({
+    //   method:'get',
+    //   url:'http://127.0.0.1:5001/aListAll',
+
+    //   }).then(function(data){
+        
+    //     console.log((data.data.data)[0])
+    //   })
+    // },
     setCurveChartFn () {
+      // console.log(this.data)
       // 基于准备好的dom，初始化echarts实例
+      console.log(this)
+   
       const curveChart = echarts.init(document.getElementById('curve_show'))
       // 绘制面积图表
       // 数据源(模拟后台返回的数据)
-      const aListAll = [
-        { count: 36, date: '2019-04-13' },
-        { count: 52, date: '2019-04-14' },
-        { count: 78, date: '2019-04-15' },
-        { count: 85, date: '2019-04-16' },
-        { count: 65, date: '2019-04-17' },
-        { count: 72, date: '2019-04-18' },
-        { count: 88, date: '2019-04-19' },
-        { count: 64, date: '2019-04-20' },
-        { count: 72, date: '2019-04-21' },
-        { count: 90, date: '2019-04-22' },
-        { count: 96, date: '2019-04-23' },
-        { count: 100, date: '2019-04-24' },
-        { count: 102, date: '2019-04-25' },
-        { count: 110, date: '2019-04-26' },
-        { count: 123, date: '2019-04-27' },
-        { count: 100, date: '2019-04-28' },
-        { count: 132, date: '2019-04-29' },
-        { count: 146, date: '2019-04-30' },
-        { count: 200, date: '2019-05-01' },
-        { count: 180, date: '2019-05-02' },
-        { count: 163, date: '2019-05-03' },
-        { count: 110, date: '2019-05-04' },
-        { count: 80, date: '2019-05-05' },
-        { count: 82, date: '2019-05-06' },
-        { count: 70, date: '2019-05-07' },
-        { count: 65, date: '2019-05-08' },
-        { count: 54, date: '2019-05-09' },
-        { count: 40, date: '2019-05-10' },
-        { count: 45, date: '2019-05-11' },
-        { count: 38, date: '2019-05-12' }
-      ]
+   console.log(this.aListAll)
+      // const aListAll = [
+      //   { count: 36, date: '2019-04-13' },
+      //   { count: 52, date: '2019-04-14' },
+      //   { count: 78, date: '2019-04-15' },
+      //   { count: 85, date: '2019-04-16' },
+      //   { count: 65, date: '2019-04-17' },
+      //   { count: 72, date: '2019-04-18' },
+      //   { count: 88, date: '2019-04-19' },
+      //   { count: 64, date: '2019-04-20' },
+      //   { count: 72, date: '2019-04-21' },
+      //   { count: 90, date: '2019-04-22' },
+      //   { count: 96, date: '2019-04-23' },
+      //   { count: 100, date: '2019-04-24' },
+      //   { count: 102, date: '2019-04-25' },
+      //   { count: 110, date: '2019-04-26' },
+      //   { count: 123, date: '2019-04-27' },
+      //   { count: 100, date: '2019-04-28' },
+      //   { count: 132, date: '2019-04-29' },
+      //   { count: 146, date: '2019-04-30' },
+      //   { count: 200, date: '2019-05-01' },
+      //   { count: 180, date: '2019-05-02' },
+      //   { count: 163, date: '2019-05-03' },
+      //   { count: 110, date: '2019-05-04' },
+      //   { count: 80, date: '2019-05-05' },
+      //   { count: 82, date: '2019-05-06' },
+      //   { count: 70, date: '2019-05-07' },
+      //   { count: 65, date: '2019-05-08' },
+      //   { count: 54, date: '2019-05-09' },
+      //   { count: 40, date: '2019-05-10' },
+      //   { count: 45, date: '2019-05-11' },
+      //   { count: 38, date: '2019-05-12' }
+      // ]
 
       // 但是图标要求直接给数字的值, 所以要把对象的值取出来形成2个只有值的数组
       const aCount = []
-      const aDate = []
-
-      for (let i = 0; i < aListAll.length; i++) {
-        aCount.push(aListAll[i].count)
-        aDate.push(aListAll[i].date)
+      const aDate = []  
+      for (let i = 0; i < this.aListAll.length; i++) {
+        aCount.push(this.aListAll[i].count)
+        aDate.push(this.aListAll[i].date)
       }
 
       // 面积图的echarts配置项(参考文档复制)

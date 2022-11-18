@@ -6,7 +6,9 @@ import router  from "../router/index";
 import { Message } from "element-ui";
 
 export const baseURL = 'http://big-event-vue-api-t.itheima.net'
-// 二次封装axios，建立一个新的axios
+// 二次封装axios，建立一个新的axios实例对象
+export const homeAxios = axios.create()
+
 const myAxios = axios.create({
     // 前缀的地址
     baseURL:baseURL

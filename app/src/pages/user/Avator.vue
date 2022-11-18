@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import {updateUseravatorApi} from '../../api/channel'
+import {updateUseravatorApi} from '@/api/channel'
 export default {
   name: "Avator",
   data() {

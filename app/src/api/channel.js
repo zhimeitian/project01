@@ -1,7 +1,18 @@
-import request from '../utils/request'
+import request  from '../utils/request'
 import store from '../store/index'
+import {homeAxios}from '../utils/request'
 // 接口请求方法
 // 对象的解构赋值
+
+//从node设置服务器返回表格数据
+
+export const aListAllApi = function(){
+  return homeAxios({
+    method:'get',
+		url:'http://localhost:8082/info'
+  })
+}
+
 // 注册接口的请求
 export const registerApi  = function({username,password,repassword}){
    return request({

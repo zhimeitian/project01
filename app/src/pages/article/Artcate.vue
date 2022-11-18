@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { getArtcateApi, addArtCateAPI, updateArtCateAPI, delArtCateAPI } from '../../api/channel'
+import { getArtcateApi, addArtCateAPI, updateArtCateAPI, delArtCateAPI } from '@/api/channel'
 export default {
 name:'Artcate',
 

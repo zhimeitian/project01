@@ -27,7 +27,7 @@
 
 <script>
 import {mapMutations} from 'vuex'
-import {loginApi} from '../api/channel'
+import {loginApi} from '@/api/channel'
 export default {
     name:"Login",
     data(){
@@ -59,8 +59,9 @@ export default {
       }
     },
     methods:{
-      //路由跳转到注册页面
+      
       ...mapMutations(['Updatetoken']),
+      //路由跳转到注册页面
       goReg(){
         this.$router.push('/reg')
       },
@@ -71,8 +72,9 @@ export default {
           if(valid){
             // console.log(this.loginForm)
             // 对象的解构赋值，把返回对象里的data字段对应的值保存在res上
+          
             const {data:res} = await loginApi(this.loginForm)
-            // console.log(res)
+            console.log(res)
                 if(res.code !== 0) return this.$message.error(res.message)
                 this.$message.success(res.message)
                 // console.log(res.token)

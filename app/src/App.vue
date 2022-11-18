@@ -1,7 +1,6 @@
 <template>
   <div>
     <!-- 组件挂载点 -->
-    <!-- {{created()}} -->
 
     <router-view></router-view>
   </div>

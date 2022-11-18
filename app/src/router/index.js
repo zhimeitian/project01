@@ -94,5 +94,9 @@ router.beforeEach((to, from, next) => {
 
 })
 
+const routerRePush = VueRouter.prototype.push
+VueRouter.prototype.push = function (location) {
+  return routerRePush.call(this, location).catch(error => error)
+}
 export default router
 // 退出登录和重新登录，只走相关组件的代码（不会导致所有的代码重新执行，app.vue不走也就不会再次执行app.vue的代码）

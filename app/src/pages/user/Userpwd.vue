@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { updatePwdApi } from "../../api/channel";
+import { updatePwdApi } from "@/api/channel";
 export default {
   name: "Userpwd",
   data() {

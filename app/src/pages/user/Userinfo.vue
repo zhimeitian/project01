@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import {updateUserinfoApi} from '../../api/channel'
+import {updateUserinfoApi} from '@/api/channel'
 export default {
 name:'Userinfo',
  data () {

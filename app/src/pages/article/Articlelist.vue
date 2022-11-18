@@ -50,6 +50,7 @@
         <el-table-column label="操作">
           <template v-slot="{ row }">
             <el-button type="danger" size="mini" @click="removeFn(row.id)">删除</el-button>
+             <el-button type="info" size="mini" @click="showDetailFn(row.id)">编辑</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -74,7 +75,7 @@
         @closed="onDialogClosedFn"
       >
         <!-- 发布文章的对话框 -->
-        <el-form :model="pubForm" :rules="pubFormRules" ref="pubFormRef" label-width="100px">
+        <el-form :model="pubForm" :rules="pubFormRules" ref="pubFormRef" label-width="100px" >
           <el-form-item label="文章标题" prop="title">
             <el-input v-model="pubForm.title" placeholder="请输入标题"></el-input>
           </el-form-item>
@@ -91,7 +92,7 @@
           </el-form-item>
           <el-form-item label="文章内容" prop="content">
             <!-- 使用 v-model 进行双向的数据绑定 -->
-            <quill-editor v-model="pubForm.content" @change="contentChange"></quill-editor>
+            <quill-editor v-model="pubForm.content" @change="contentChange" ></quill-editor>
           </el-form-item>
           <el-form-item label="文章封面">
             <!-- 用来显示封面的图片 -->
@@ -145,9 +146,9 @@
 // 标签和样式中，引入图片和文件可以写路径，在js里引入图片要用import的方法，如果使用http外链的形式就可以随便用1
 // webpack会根据图片大小转换为base64还是临时路径
 // 在标签和样式中，把路径放在js的vue变量里再赋值是不行的，会被当成普通字符串使用
-import defaultImg from "../../assets/images/cover.jpg";
-import {getArtcateApi,uploadArticleAPI,getArticleListAPI,getArticleDetailAPI,delArticleAPI} from "../../api/channel";
-import {baseURL} from '../../utils/request'
+import defaultImg from "@/assets/images/cover.jpg";
+import {getArtcateApi,uploadArticleAPI,getArticleListAPI,getArticleDetailAPI,delArticleAPI} from "@/api/channel";
+import {baseURL} from '@/utils/request'
 export default {
   name: "Articlelist",
   data() {

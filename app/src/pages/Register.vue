@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import {registerApi} from '../api/channel'
+import {registerApi} from '@/api/channel'
 export default {
 name:"Register",
 data(){
